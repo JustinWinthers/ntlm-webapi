@@ -248,20 +248,13 @@ ntlmWebRequest.prototype = {
                     if (err) cb(err);
 
                     if (token) {
-                        self.processAuthorizedRequest(self)
-
-                            .then(function(result){
-                                cb(null, result);
-                            })
-                            .error(function(err){
-                                cb(err)
-                            })
+                        self.run(cb)
                     }
                 })
 
             } else return self.authorize(self.method)
                 .then(function(){
-                    return self.processAuthorizedRequest(self);
+                    return self.run();
                 })
 
         }
