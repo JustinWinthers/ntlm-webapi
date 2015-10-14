@@ -1,4 +1,4 @@
-# `ntlm-web-api`
+# `ntlm-webapi`
 
 Easily call a Windows authenticated soap service from Node
 
@@ -6,14 +6,14 @@ Easily call a Windows authenticated soap service from Node
 
 ---
 
-[![NPM](https://nodei.co/npm/ntlm-web-api.png?downloads=true&stars=true)](https://nodei.co/npm/ntlm-web-api/)
+[![NPM](https://nodei.co/npm/ntlm-webapi.png?downloads=true&stars=true)](https://nodei.co/npm/ntlm-webapi/)
 
-[![build status](https://secure.travis-ci.org/JustinWinthers/ntlm-web-api.png)](http://travis-ci.org/JustinWinthers/ntlm-web-api)
+[![build status](https://secure.travis-ci.org/JustinWinthers/ntlm-webapi.png)](http://travis-ci.org/JustinWinthers/ntlm-webapi)
 
-## Installation (via [npm](https://npmjs.org/package/ntlm-web-api))
+## Installation (via [npm](https://npmjs.org/package/ntlm-webapi))
 
 ```bash
-$ npm install ntlm-web-api
+$ npm install ntlm-webapi
 ```
 
 ## Usage

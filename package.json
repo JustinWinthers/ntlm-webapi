@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "ntlm-webapi",
   "version": "1.0.0",
   "description": "Easily call a Windows authenticated WebAPI from Node",
   "main": "src/index.js",
