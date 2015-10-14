@@ -1,0 +1,50 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "Easily call a Windows authenticated WebAPI from Node",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "keywords": [
+    "ntlm",
+    "web",
+    "api",
+    "webapi",
+    "ntlm-webapi"
+  ],
+  "homepage": "https://github.com/JustinWinthers/ntlm-webapi",
+  "contributors": [
+    {
+      "name": "Justin Winthers",
+      "email": "jwintherse@gmail.com",
+      "web": "https://github.com/JustinWinthers/"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/JustinWinthers/ntlm-webapi/issues"
+  },
+  "dependencies": {
+    "agentkeepalive": "^2.0.3",
+    "async": "^1.4.2",
+    "bluebird": "^2.10.1",
+    "httpntlm": "^1.5.2",
+    "httpreq": "^0.4.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JustinWinthers/ntlm-webapi.git"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "eslint": "^1.5.1",
+    "mocha": "^2.3.3",
+    "nock": "^2.13.0"
+  },
+  "scripts": {
+    "test": "npm run lint  && ./node_modules/mocha/bin/mocha",
+    "lint": "./node_modules/eslint/bin/eslint.js src test"
+  },
+  "author": "Justin Winthers",
+  "license": "MIT"
+}
