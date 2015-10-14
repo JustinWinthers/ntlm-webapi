@@ -1,6 +1,6 @@
 # `ntlm-webapi`
 
-Easily call a Windows authenticated soap service from Node
+Easily call a Windows authenticated web api service from Node
 
 ###### Inspired by the `ChrisGeorge Framework`
 
@@ -87,11 +87,11 @@ reauthorizing the service, but instead stay authorized with a cached token it re
     webapi.authorize('GET')
 
        /* token is not used here, but shown to illustrate it exists.
-          It's cached in the `soap` object  */
+          It's cached in the `webapi` object  */
 
         .then (function(token){
 
-            app.get('/route/to/soap/abstraction',function(req, res) {
+            app.get('/your/own/express/route',function(req, res) {
 
                 webapi.get()
                     .then(function(result){
@@ -105,11 +105,10 @@ reauthorizing the service, but instead stay authorized with a cached token it re
 
         .error(function(err){
 
-          /* throw an error to either stop the server from starting if it's severe
-             enough or handle the error gracefully
+          /* an error that ntlm-webapi could not authorize the web api service for some reason so throw the error
           */
 
-          throw new Error('failed to authorize soap service');
+          throw err;
 
         };
 ````
