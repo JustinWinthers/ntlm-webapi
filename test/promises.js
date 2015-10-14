@@ -17,7 +17,7 @@
 
     describe('PROMISES:', function () {
 
-        createNockInstances(1);
+        createNockInstances(2);
 
         it('promise method should return a promise when a callback is not specified', function (done) {
             expect(webapi.get()).to.have.property('then');

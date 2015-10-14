@@ -181,9 +181,8 @@ As of this version, only GET has been tested.  POST is beta but has an API where
 
 ## Other Notes
 
-- I highly recommend using the promise api over the callback api.  The promise API will soon handle retry's if the connection
-closes because the connection has been idle.  A retry will be sent to reauthorize the request.  However, if you use the
-callback api then you will have to manage this yourself by inspecting the error.
+- The API will handle retry's if the connection closes because the connection has been idle.  A retry will be sent to reauthorize the request.  It will only try once,
+and then fail if unsuccessful on the second try.
 
 ## Author
 

@@ -46,7 +46,12 @@ ntlmWebRequest.prototype = {
 
     buildType2Message: function(res){
 
-        return ntlm.parseType2Message(res.headers['www-authenticate']);
+        var error;
+
+        var type2Message = ntlm.parseType2Message(res.headers['www-authenticate'], function(err){error=err});
+
+        if (error) return undefined;
+        else return type2Message;
 
     },
 
@@ -105,7 +110,7 @@ ntlmWebRequest.prototype = {
                 function (res, callback) {
 
                     if (!res.headers['www-authenticate'])
-                        return callback(new Error('www-authenticate not found on response of type 2 request'))
+                        return callback(new Error('www-authenticate not found on response of type 2 request'));
                     else {
                         callback(null, self.type2msg = self.buildType2Message(res));
 
@@ -115,7 +120,12 @@ ntlmWebRequest.prototype = {
 
                 function(type2message, callback) {
 
-                    callback(null, self.type3msg = self.buildType3Message(type2message, self.options));
+                    if (type2message){
+                        callback(null, self.type3msg = self.buildType3Message(type2message, self.options));
+                    } else {
+                        callback(null, null)
+                    }
+
 
                 }],
 
@@ -128,6 +138,12 @@ ntlmWebRequest.prototype = {
                         self.isAuthorized = true;
 
                         resolve (token);
+
+                    } else {
+
+                        self.isAuthorized = false;
+
+                        resolve(undefined);
                     }
 
                 });
@@ -207,7 +223,25 @@ ntlmWebRequest.prototype = {
             self.getAuthToken(self)
 
                 .then(function(token){
-                    callback(null, token);})
+
+                    if (token) callback(null, token);
+
+                    else {
+                        //try again
+
+                        if (!self.tryAgain){
+
+                            self.tryAgain = true;
+
+                            self.authorize(method, callback);
+
+                        } else {
+                            throw new Error('Unable to successfully authorize to service and process Type2 message')
+                        }
+
+                    }
+
+                })
 
                 .error(function(err){
                     callback(err);
@@ -215,8 +249,31 @@ ntlmWebRequest.prototype = {
 
         } else {
 
-            return self.getAuthToken(self);
+            return self.getAuthToken(self)
 
+                    .then(function(token){
+
+                        if (token){
+
+                            return new Promise(function (resolve){resolve(token)})
+                        }
+
+                        else {
+                            //try again
+
+                            if (!self.tryAgain){
+
+                                self.tryAgain = true;
+
+                                return self.authorize(method);
+
+                            } else {
+                                throw new Error('Unable to successfully authorize to service and process Type2 message')
+                            }
+
+                        }
+
+                    })
         }
 
     },
