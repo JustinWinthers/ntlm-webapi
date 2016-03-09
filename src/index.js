@@ -196,7 +196,9 @@ ntlmWebRequest.prototype = {
     post: function(body, cb){
 
         this.method = 'post';
-        this.body = body;
+
+        if (typeof body === 'object') this.body = JSON.stringify(body);
+        else this.body = body;
 
         if (cb) {
             this.run(cb)
