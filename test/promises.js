@@ -7,7 +7,7 @@
         , WebApiRequest = require('../')
         , nock = require('nock')
         , webapi = new WebApiRequest({
-            url: 'http://my.successful.webapi.call',
+            url: 'https://my.successful.webapi.call',
             username: 'myusername',
             password: 'mypassword',
             workstation: '',
@@ -37,7 +37,7 @@
 
         for (var i=0; i<iterator; i++){
             // setup fake webapi url instance for type 1 and type 3 posts
-            nock('http://my.successful.webapi.call')
+            nock('https://my.successful.webapi.call')
                 .intercept('/','GET')
                 .reply(200, 'Mocked webapi Service',
                 { 'content-type': 'text/html; charset=us-ascii',
