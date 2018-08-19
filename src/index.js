@@ -3,7 +3,7 @@
 var ntlm = require('httpntlm').ntlm,
     async = require('async'),
     httpreq = require('httpreq'),
-    HttpsAgent = require('agentkeepalive').HttpsAgent;
+    HttpsAgent = require('agentkeepalive').HttpsAgent,
     Promise = require('bluebird'),
     keepaliveAgent = new HttpsAgent({
         keepAlive: true
