@@ -3,9 +3,9 @@
 var ntlm = require('httpntlm').ntlm,
     async = require('async'),
     httpreq = require('httpreq'),
-    HttpAgent = require('agentkeepalive'),
+    HttpsAgent = require('agentkeepalive').HttpsAgent;
     Promise = require('bluebird'),
-    keepaliveAgent = new HttpAgent({
+    keepaliveAgent = new HttpsAgent({
         keepAlive: true
     });
 
@@ -14,8 +14,8 @@ var ntlmWebRequest = function(options) {
 
     this.options = options;
 
+    this.options.domain = this.options.domain || '';
     this.options.workstation = this.options.workstation || '';
-
 
 };
 
